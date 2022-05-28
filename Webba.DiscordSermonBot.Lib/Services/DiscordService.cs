@@ -18,11 +18,13 @@ namespace Webba.DiscordSermonBot.Lib.Services
 
         private readonly DiscordRestClient _discordRestClient;
         private readonly DiscordServiceOptions _options;
+        private readonly SermonCosmosService _sermon;
 
-        public DiscordService(DiscordRestClient discordRestClient, DiscordServiceOptions options)
+        public DiscordService(DiscordRestClient discordRestClient, DiscordServiceOptions options, SermonCosmosService sermon)
         {
             _discordRestClient = discordRestClient;
             _options = options;
+            _sermon = sermon;
         }
 
         public async Task SetupGlobalCommandAsync()
@@ -76,8 +78,8 @@ namespace Webba.DiscordSermonBot.Lib.Services
 
             var commands = new ApplicationCommandProperties[] { builder.Build(), fbuilder.Build() };
 
-            await _discordRestClient.BulkOverwriteGuildCommands(commands, _options.TestGuild);
-            //await _discordRestClient.BulkOverwriteGlobalCommands(commands);
+            //await _discordRestClient.BulkOverwriteGuildCommands(commands, _options.TestGuild);
+            await _discordRestClient.BulkOverwriteGlobalCommands(commands);
         }
 
         public async  Task<DiscordWebhookResponse> HandleGlobalCommand(string sig, string timestamp, byte[] body)
@@ -95,12 +97,76 @@ namespace Webba.DiscordSermonBot.Lib.Services
                     } 
                     else if(interaction.Type == InteractionType.ApplicationCommand)
                     {
-                        var responseString = interaction.Respond("Testing");
+                        var appInter = (RestSlashCommand)interaction;
+                        var responseString = ""; 
+                        if(appInter.Data != null && appInter.GuildId != null && appInter.ChannelId != null)
+                        {
+                            var data = appInter.Data;
+                            if (data.Name == "sermon")
+                            {
+                                if (data.Options.Any())
+                                {
+                                    var sData = data.Options.First();
+                                    if (sData.Name == "add")
+                                    {
+                                        if (sData.Options.Any(o => o.Name == "character"))
+                                        {
+                                            var text = sData.Options.First(o => o.Name == "character").Value.ToString();
+                                            var userId = appInter.User.Id;
+
+                                            var userOption = sData.Options.FirstOrDefault(o => o.Name == "user");
+                                            if (userOption != null)
+                                            {
+                                                userId = ((RestGuildUser)userOption.Value).Id;
+                                            }
+
+                                            if (text != null) {
+                                                var members = text.Split(" ").Select(s => new SermonMemberDAO(s, userId)).ToList();
+
+                                                var str = await _sermon.AddSermonMember(appInter.GuildId.Value, appInter.ChannelId.Value, members);
+
+                                                responseString = interaction.Respond(str);
+                                            }
+                                        }
+                                    }
+                                    else if (sData.Name == "remove")
+                                    {
+                                        responseString = interaction.Respond("remove test");
+                                    }
+                                    else if (sData.Name == "stop")
+                                    {
+                                        responseString = interaction.Respond("stop test");
+                                    }
+                                    else if (sData.Name == "list")
+                                    {
+                                        responseString = interaction.Respond("list test");
+                                    }
+                                }
+                            }
+                            else if (data.Name == "faith")
+                            {
+                                responseString = interaction.Respond("faith test");
+                            }
+                        }
+
+                        if(responseString == "")
+                        {
+                            responseString = appInter.Respond("Something went wrong");
+                        }
+
                         return new() { Authorized = true, Response= responseString };
                     }
                 }
             }
             return new() { Authorized = false };
+        }
+
+        public async Task SendSermonNotification(ulong guildId, ulong channelId, ulong userId, string message)
+        {
+            var g = await _discordRestClient.GetGuildAsync(guildId);
+            var channel = await g.GetTextChannelAsync(channelId);
+
+            await channel.SendMessageAsync($"<@{userId}> {message}");
         }
     }
 }

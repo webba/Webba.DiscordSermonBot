@@ -1,5 +1,8 @@
-﻿using Discord.Rest;
+﻿using Azure.Messaging.ServiceBus;
+using Discord.Rest;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,11 +36,24 @@ namespace Webba.DiscordSermonBot
                    return discordRestClient;
                });
 
+            builder.Services.AddSingleton(c => new CosmosClient(config["COSMOS_CONNECTION_STRING"]));
+            builder.Services.AddSingleton(c => new ServiceBusClient(config["SERVICE_BUS_CONNECTION_STRING"]));
+
             builder.Services.AddSingleton<DiscordServiceOptions>(dc => 
                 new DiscordServiceOptions(config[DiscordServiceOptions.PublicKeyEnv], config[DiscordServiceOptions.TestGuildEnv])
             );
 
             builder.Services.AddSingleton<DiscordService>();
+
+            builder.Services.AddSingleton<SermonCosmosServiceOptions>(dc =>
+                new SermonCosmosServiceOptions(
+                    config[SermonCosmosServiceOptions.DatabaseNameEnv], 
+                    config[SermonCosmosServiceOptions.ContainerNameEnv],
+                    config[SermonCosmosServiceOptions.ServiceBusQueueEnv]
+                )
+            );
+
+            builder.Services.AddSingleton<SermonCosmosService>();
         }
     }
 }

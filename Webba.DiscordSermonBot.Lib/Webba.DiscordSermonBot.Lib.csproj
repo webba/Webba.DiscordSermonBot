@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.8.1" />
     <PackageReference Include="Discord.Net.Rest" Version="3.7.1" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.27.1" />
   </ItemGroup>
 
 </Project>
