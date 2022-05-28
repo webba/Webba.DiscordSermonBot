@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webba.DiscordSermonBot", "Webba.DiscordSermonBot\Webba.DiscordSermonBot.csproj", "{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webba.DiscordSermonBot.Lib", "Webba.DiscordSermonBot.Lib\Webba.DiscordSermonBot.Lib.csproj", "{BC9238BC-3068-476F-9F5E-545CA711D9B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB3F6C00-7886-4D96-A317-1261D764C12F}
+	EndGlobalSection
+EndGlobal
