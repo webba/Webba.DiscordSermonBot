@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webba.DiscordSermonBot", "Webba.DiscordSermonBot\Webba.DiscordSermonBot.csproj", "{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webba.DiscordSermonBot.Lib", "Webba.DiscordSermonBot.Lib\Webba.DiscordSermonBot.Lib.csproj", "{BC9238BC-3068-476F-9F5E-545CA711D9B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webba.DiscordSermonBot.Lib", "Webba.DiscordSermonBot.Lib\Webba.DiscordSermonBot.Lib.csproj", "{BC9238BC-3068-476F-9F5E-545CA711D9B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webba.DiscordSermonBot.Webhook", "Webba.DiscordSermonBot.Webhook\Webba.DiscordSermonBot.Webhook.csproj", "{2B3C4207-8145-45E2-892C-EEF927A380A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webba.DiscordSermonBot.Backend", "Webba.DiscordSermonBot.Backend\Webba.DiscordSermonBot.Backend.csproj", "{578B1158-F70B-417A-B452-A3202F94239C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90ED96BE-2B4F-48C6-8835-98BD1A6819DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC9238BC-3068-476F-9F5E-545CA711D9B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3C4207-8145-45E2-892C-EEF927A380A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3C4207-8145-45E2-892C-EEF927A380A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3C4207-8145-45E2-892C-EEF927A380A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3C4207-8145-45E2-892C-EEF927A380A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578B1158-F70B-417A-B452-A3202F94239C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578B1158-F70B-417A-B452-A3202F94239C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578B1158-F70B-417A-B452-A3202F94239C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578B1158-F70B-417A-B452-A3202F94239C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

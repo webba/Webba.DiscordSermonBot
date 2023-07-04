@@ -11,5 +11,7 @@ namespace Webba.DiscordSermonBot.Lib.Models
         public bool Authorized { get; set; }
 
         public string? Response { get; set; }
+
+        public SermonCommandData? CommandData { get; set; }
     }
 }
